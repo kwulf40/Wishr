@@ -4,7 +4,7 @@
     "manifest_version": 2,
     "content_scripts": [
         {
-            "matches": ["<all_urls>"],
+            "matches": ["https://*.amazon.com/*", "https://*.walmart.com/*", "https://*.target.com/*"],
             "js": ["content.js"]
         }
     ],
