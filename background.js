@@ -24,7 +24,7 @@ function modifyUserStatus(statusBool, userInfo){
     }
     else if (!statusBool){
         return new Promise (resolve => {
-            chrome.storage.local.get(['userStatus', userInfo], function (response) {
+            chrome.storage.local.get(['userStatus', 'userInfo'], function (response) {
                 if (chrome.runtime.lastError) resolve ('fail');
 
                 if (response.userStatus === undefined) resolve ('fail');
@@ -36,7 +36,7 @@ function modifyUserStatus(statusBool, userInfo){
                     }
                 })
                 .then (response => {
-                    if (response !== 200) resolve ('fail');
+                    if (response.status !== 200) resolve ('fail');
 
                     chrome.storage.local.set({userStatus: statusBool, userInfo: {} }, function (response){
                         if (chrome.runtime.lastError) resolve ('fail');
