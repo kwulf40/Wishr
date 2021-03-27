@@ -11,9 +11,8 @@ function authenticateFunc (request, response, next) {
     credentials = Buffer.from(credentials, 'base64').toString('binary');
 
     credentials = credentials.split(':');
-
     /* Faux Database check of credentials */
-    if (credentials[0] === 't@yeah.com' && credentials[1] === '123') {
+    if (credentials[0] === 'default' && credentials[1] === '123') {
         next();
     } else {
         response.status(401).end();

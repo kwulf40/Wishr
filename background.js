@@ -2,15 +2,15 @@ let signedIn = false;
 
 function modifyUserStatus(statusBool, userInfo){
     if (statusBool){
-        return fetch('http://localhost:300/login', {
+        return fetch('http://localhost:3000/login', {
             method: 'GET',
             headers: {
-                'AuthToken': 'Basic' + btoa(`${userInfo.username}:${userInfo.password}`)
+                'AuthToken': 'Input ' + btoa(`${userInfo.username}:${userInfo.password}`)
             }
         })
         .then(response => {
             return new Promise (resolve => {
-                if (response !== 200) resolve ('fail');
+                if (response.status !== 200) resolve ('fail');
 
                 chrome.storage.local.set({userStatus: statusBool, userInfo}, function(response){ /*need to hash password*/
                     if (chrome.runtime.lastError) resolve('fail');
@@ -69,5 +69,4 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     else if (request.message === 'userStatus'){
 
     }
-
 });
