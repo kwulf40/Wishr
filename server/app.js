@@ -19,6 +19,31 @@ function authenticateFunc (request, response, next) {
     }
 }
 
+//Database Initialization and Request
+app.get('/', function (request, response) {
+    const sql = require("mssql");
+
+    var config = {
+        user: 'test',
+        password: 'test',
+        server: 'localhost',
+        database: 'Wishr User Database'
+    };
+
+    sql.connect(config, function(error) {
+        if (error) console.log(error);
+
+        var databaseRequest = new sql.Request();
+
+        databaseRequest.query('select * from Userlist', function(error, recordset) {
+            if (error) console.log(error);
+
+            response.send(recordset);
+        });
+    });
+});
+
+//NPM Server Communication
 app.get('/login', authenticateFunc, (request, response) => {
     response.status(200).end(); //Ok response on succesful login
 });
