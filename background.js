@@ -2,7 +2,7 @@ let signedIn = false;
 
 function modifyUserStatus(statusBool, userInfo){
     if (statusBool){
-        return fetch('http://localhost:3000/login', {
+        return fetch('https://wishr.loca.lt/login', {
             method: 'GET',
             headers: {
                 'AuthToken': 'Input ' + btoa(`${userInfo.username}:${userInfo.password}`)
@@ -29,7 +29,7 @@ function modifyUserStatus(statusBool, userInfo){
 
                 if (response.userStatus === undefined) resolve ('fail');
 
-                fetch('http://localhost:3000/logout', {
+                fetch('https://wishr.loca.lt/logout', {
                     method: 'GET',
                     headers: {
                         'AuthToken' : 'Basic' + btoa(`${response.userInfo.username}:${response.userInfo.password}`)

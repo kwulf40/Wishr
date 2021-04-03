@@ -11,6 +11,6 @@
     },
     "permissions": [
         "storage",
-        "http://localhost:3000/"
+        "https://wishr.loca.lt/"
     ]
 }
