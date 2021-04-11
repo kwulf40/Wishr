@@ -1,23 +1,50 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset = "UTF-8">
+<html lang="en">
+    <link rel = "stylesheet" href = "SignUp.css"> 
+<head>
+	    <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Create Account Page</title>
-        <style>
-        
-        </style>
-    </head>
-
-    <body>
-        <h1>This is the account creation page.</h1>
+    <style>
+        body{
+            width: 300px;
+            height: 500px;
+        }
+    </style>
+    <title>Wishr</title>
+    <header>
+        <h1>Wishr</h1>
+        <h3>Shopping made easy.</h3>
+    </header>
+</head>
+<body>
+    <welcome>Welcome!</welcome>
+    <br>
+    <SignUpNote>Create an Account</SignUpNote>
+    <p>
+        <br>
+    </p>
+            <!--FOR FRONTEND:
+        Merging this html in weirdly adjusted the placement of the 
+        text input boxes-->
+    <div class = "SignUpBox">
         <form>
-            <input type="username" name="username" id="username" placeholder="Username">
-            <input type="password" name="password" id="password" placeholder="Password">
-            <button id="create", type="submit">Create Account</button>
+            <user>Create a Username:</user>
+            <br>
+            <input type="username" name="username" placeholder="Username">
+            <br>
+            <pass>Create a Password:</pass>
+            <br>
+            <input type="password" name="password" placeholder="********">
+            <input id="create", type="submit" name="signup" value="Sign Up">
         </form>
-        <script src="createAccount.js"></script>
+    </div>
+    <script src="createAccount.js"></script>
 
-        <a href="./mainPage.html"><button>Main Page</button></a>
-    </body>
+
+    <!--FOR FRONTEND:
+    Added this button to return to login in from the 
+    create account page, it could use the same beautiful styling 
+    that everything else has!-->
+    <a href="./login.html"><button type="submit" name="login" value="login">Back to Login</button></a>
+</body>
 </html>
