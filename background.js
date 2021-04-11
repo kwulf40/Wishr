@@ -2,7 +2,7 @@ let signedIn = false;
 
 function modifyUserStatus(statusBool, userInfo){
     if (statusBool){
-        return fetch('https://wishr.loca.lt/login', {
+        return fetch('https://wishr.loca.lt/loginCheck', {
             method: 'GET',
             headers: {
                 'AuthToken': 'Input ' + btoa(`${userInfo.username}:${userInfo.password}`)
@@ -10,10 +10,10 @@ function modifyUserStatus(statusBool, userInfo){
         })
         .then(response => {
             return new Promise (resolve => {
-                if (response.status !== 200) resolve ('fail');
+                if (response.status !== 200) resolve ('Response Status Failure');
 
-                chrome.storage.local.set({userStatus: statusBool, userInfo}, function(response){ /*need to hash password*/
-                    if (chrome.runtime.lastError) resolve('fail');
+                chrome.storage.local.set({userStatus: statusBool, userInfo}, function(response){
+                    if (chrome.runtime.lastError) resolve('Data Storage Failure');
 
                     signedIn = statusBool;
                     resolve('success');
@@ -25,9 +25,9 @@ function modifyUserStatus(statusBool, userInfo){
     else if (!statusBool){
         return new Promise (resolve => {
             chrome.storage.local.get(['userStatus', 'userInfo'], function (response) {
-                if (chrome.runtime.lastError) resolve ('fail');
+                if (chrome.runtime.lastError) resolve ('Data Retrieval Failure');
 
-                if (response.userStatus === undefined) resolve ('fail');
+                if (response.userStatus === undefined) resolve ('No currently logged in user failure');
 
                 fetch('https://wishr.loca.lt/logout', {
                     method: 'GET',
@@ -36,10 +36,10 @@ function modifyUserStatus(statusBool, userInfo){
                     }
                 })
                 .then (response => {
-                    if (response.status !== 200) resolve ('fail');
+                    if (response.status !== 200) resolve ('Response Status Failure');
 
                     chrome.storage.local.set({userStatus: statusBool, userInfo: {} }, function (response){
-                        if (chrome.runtime.lastError) resolve ('fail');
+                        if (chrome.runtime.lastError) resolve ('Data Write Failure');
 
                         signedIn = statusBool;
                         resolve ('success');
@@ -49,6 +49,22 @@ function modifyUserStatus(statusBool, userInfo){
             });
         });
     }
+}
+
+function createUserAccount(userInfo){
+    return fetch('https://wishr.loca.lt/createAcc', {
+            method: 'GET',
+            headers: {
+                'AuthToken': 'Create ' + btoa(`${userInfo.username}:${userInfo.password}`)
+            }
+        })
+        .then(response => {
+            return new Promise (resolve => {
+                if (response.status !== 200) resolve ('fail');
+                else resolve('New account created');
+            });
+        })
+        .catch(error => console.log('test3'));
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -67,6 +83,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         return true;
     }
     else if (request.message === 'userStatus'){
-
+        //
+    }
+    else if (request.message === 'createAccount'){
+        createUserAccount(request.payload)
+        .then(response => sendResponse(response))
+        .catch(error => console.log(error));
     }
 });

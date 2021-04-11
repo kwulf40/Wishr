@@ -7,12 +7,12 @@ document.querySelector('form').addEventListener('submit', event => {
         chrome.runtime.sendMessage({message: 'login', payload: {username, password}}, function (response){
             if (response === 'success') console.log('Login Successful');
             else {
-                console.log("fail");
+                console.log("Login Failed");
             }
         });
         
     }
     else{
-        console.log("test2");
+        console.log("Please Enter a Username and Password");
     }
 })
