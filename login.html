@@ -1,23 +1,53 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset = "UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Login Page</title>
-        <style>
-        
-        </style>
-    </head>
-
-    <body>
-        <h1>This is the login page.</h1>
+<html lang="en">
+    <link rel="stylesheet"  href = "Login.css"/>
+  <head>
+	<meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        width: 300px;
+        height: 500px;
+      }
+    </style>
+    <title>Wishr</title>
+    <header>
+        <h1>Wishr</h1>
+        <h3>Shopping made easy.</h3>
+    </header>
+  </head>
+  <body>
+      <welcome>Welcome!</welcome>
+      <br>
+      <LoginNote>Login to start saving </LoginNote>
+      <p>
+          <br>
+      </p>
+      <div class = "LoginBox">
         <form>
+            <user>Username:</user>
+            <br>
             <input type="username" name="username" id="username" placeholder="Username">
-            <input type="password" name="password" id="password" placeholder="Password">
-            <button id="login", type="submit">Login</button>
+            <br>
+            <pass>Password:</pass>
+            <br>
+            <input type="password" name="password" id="password" placeholder="********"> <br>
+            <a href="#"> Forgot Password?</a>
+            <input id="login" type="submit" name="login" value="Login">
         </form>
-        <script src="loginScript.js"></script>
+        </div>
 
-        <a href="./mainPage.html"><button>Main Page</button></a>
-    </body>
+        <!--FOR FRONTEND:
+        Had to reformat the button call syntax, 
+        and unfortunately that broke the styling on this button-->
+        <div class = "SignUp">
+            <form>
+                <signUpTxt>Don't have an account?</signUpTxt>
+                <br>
+            </form>
+            <a href="./createAccount.html"><button type="submit" name="create" value="Sign Up">Create Account</button></a>
+            </div>
+
+    <script src="loginScript.js"></script>
+  </body>
 </html>
