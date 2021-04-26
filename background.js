@@ -80,7 +80,7 @@ function createUserAccount(userInfo){
             method: 'GET',
             headers: {
                 'AuthToken': 'Create ' + btoa(`${userInfo.username}:${userInfo.password}`)
-            }
+            },
         })
         .then(response => {
             return new Promise (resolve => {
@@ -89,6 +89,21 @@ function createUserAccount(userInfo){
             });
         })
         .catch(error => console.log(error));
+}
+
+function getWishlist(userInfo, sendResponse){
+    url = 'https://wishr.loca.lt/wishlist/' + userInfo.username
+    console.log(url)
+    var wishXML = new XMLHttpRequest()
+    wishXML.onreadystatechange = function(){
+        if(wishXML.readyState === 4) {
+
+            sendResponse(wishXML.responseXML);
+        }
+    }
+
+    wishXML.open("GET", url);
+    wishXML.send(userInfo.username);
 }
 
 /**
@@ -103,6 +118,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             .then(response => sendResponse(response))
             .catch(error => console.log(error));
         
+        return true;
+    }
+    else if (request.message === 'getWishlist'){
+        getWishlist(request.payload, sendResponse)
         return true;
     }
     else if (request.message === 'logout'){

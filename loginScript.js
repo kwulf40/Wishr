@@ -14,8 +14,21 @@ document.querySelector('form').addEventListener('submit', event => {
     if (username && password){
         chrome.runtime.sendMessage({message: 'login', payload: {username, password}}, function (response){
             if (response === 'success'){
-                //Change to main user page here <- TO-DO
                 console.log('Login Successful');
+                //Change to main user page here <- TO-DO
+                chrome.runtime.sendMessage({message: 'getWishlist', payload: {username}}, function (response){
+                    if (response){
+                        console.log('Retrieve Wishlist')
+                        //parser = new DOMParser();
+                        //xmlDoc = parser.parseFromString(response, "text/xml");
+                        //x = xmlDoc.getElementsByTagName("itemURL")
+                        console.log(response)
+                    }
+                    else{
+                        console.log("Wishlist Retrieval Failed")
+                        console.log(response)
+                    }
+                })
             }
             else {
                 console.log("Login Failed");
