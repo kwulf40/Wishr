@@ -28,13 +28,16 @@ function modifyUserStatus(statusBool, userInfo){
         .then(response => {
             return new Promise (resolve => {
                 if (response.status !== 200) resolve ('Response Status Failure');
-
-                chrome.storage.local.set({userStatus: statusBool, userInfo}, function(response){
+                user = userInfo.username
+                chrome.storage.local.set({userStatus: statusBool}, function(response){
                     if (chrome.runtime.lastError) resolve('Data Storage Failure');
 
                     signedIn = statusBool;
-                    resolve('success');
                 });
+                chrome.storage.local.set({username: user}, function(response){
+                    if (chrome.runtime.lastError) resolve('Name Data Storage Failure');
+                });
+                resolve('success');
             })
         })
         .catch(error => console.log(error))
@@ -43,7 +46,7 @@ function modifyUserStatus(statusBool, userInfo){
     else if (!statusBool){
         return new Promise (resolve => {
             //checks if there is stored login information to ensure there is a logged in account to log out.
-            chrome.storage.local.get(['userStatus', 'userInfo'], function (response) {
+            chrome.storage.local.get(['userStatus', 'user'], function (response) {
                 if (chrome.runtime.lastError) resolve ('Data Retrieval Failure');
 
                 if (response.userStatus === undefined) resolve ('No currently logged in user failure');
@@ -51,7 +54,7 @@ function modifyUserStatus(statusBool, userInfo){
                 fetch('https://wishr.loca.lt/logout', {
                     method: 'GET',
                     headers: {
-                        'AuthToken' : 'Basic' + btoa(`${response.userInfo.username}:${response.userInfo.password}`)
+                        'AuthToken' : 'Basic' + btoa(`${response.user}`)
                     }
                 })
                 .then (response => {
@@ -97,8 +100,8 @@ function getWishlist(userInfo, sendResponse){
     var wishXML = new XMLHttpRequest()
     wishXML.onreadystatechange = function(){
         if(wishXML.readyState === 4) {
-
-            sendResponse(wishXML.responseXML);
+            xml = wishXML.response
+            sendResponse(xml);
         }
     }
 
