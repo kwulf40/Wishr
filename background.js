@@ -97,8 +97,8 @@ function getWishlist(userInfo, sendResponse){
     var wishXML = new XMLHttpRequest()
     wishXML.onreadystatechange = function(){
         if(wishXML.readyState === 4) {
-
-            sendResponse(wishXML.responseXML);
+            xml = wishXML.response
+            sendResponse(xml);
         }
     }
 

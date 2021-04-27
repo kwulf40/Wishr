@@ -19,10 +19,10 @@ document.querySelector('form').addEventListener('submit', event => {
                 chrome.runtime.sendMessage({message: 'getWishlist', payload: {username}}, function (response){
                     if (response){
                         console.log('Retrieve Wishlist')
-                        //parser = new DOMParser();
-                        //xmlDoc = parser.parseFromString(response, "text/xml");
-                        //x = xmlDoc.getElementsByTagName("itemURL")
-                        console.log(response)
+                        parser = new DOMParser();
+                        temp = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + response
+                        xmlDoc = parser.parseFromString(temp, "text/xml");
+                        console.log(xmlDoc)
                     }
                     else{
                         console.log("Wishlist Retrieval Failed")
