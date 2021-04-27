@@ -5,7 +5,6 @@ window.onload = function() {
     chrome.storage.local.get(['username'], function(response){
         if (chrome.runtime.lastError) return false;
         else {
-            console.log(response.username)
             username = response.username;
         }
 
@@ -16,6 +15,19 @@ window.onload = function() {
                     parser = new DOMParser();
                     temp = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + response
                     xmlDoc = parser.parseFromString(temp, "text/xml");
+
+                    var i;
+                    var listItems = xmlDoc.getElementsByTagName('listitem');
+                    var html = '';
+                    for (i = 0; i < listItems.length; i++) { 
+                        // build the HTML for the image and name text
+                        console.log(listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue)
+                        html += "<div class=\"item\">" + "    <p>" + listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue + "</p>" + "</div>";
+                        //html += "<span>" + listItems[i].getElementsByTagName('name')[0].childNodes[0].nodeValue + '</span>';       
+                    }
+                    // 
+                    console.log(html)
+                    document.getElementById("items").innerHTML = html;
                     console.log(xmlDoc)
                 }
                 else{
