@@ -23,7 +23,7 @@ window.onload = function() {
                         // build the HTML for the image and name text
                         console.log(listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue)
                         html += "<div class=\"item\">" + "    <p>" + listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue + "</p>" + "</div>";
-                        //html += "<span>" + listItems[i].getElementsByTagName('name')[0].childNodes[0].nodeValue + '</span>';       
+                        html += "<div class=\"url\">" + "    <a href =" + "\"" + listItems[i].getElementsByTagName('itemURL')[0].childNodes[0].nodeValue + "\"" + ">" + "Item Url" + "</a>";
                     }
                     // 
                     console.log(html)
