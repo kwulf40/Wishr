@@ -28,13 +28,16 @@ function modifyUserStatus(statusBool, userInfo){
         .then(response => {
             return new Promise (resolve => {
                 if (response.status !== 200) resolve ('Response Status Failure');
-
-                chrome.storage.local.set({userStatus: statusBool, userInfo}, function(response){
+                user = userInfo.username
+                chrome.storage.local.set({userStatus: statusBool}, function(response){
                     if (chrome.runtime.lastError) resolve('Data Storage Failure');
 
                     signedIn = statusBool;
-                    resolve('success');
                 });
+                chrome.storage.local.set({username: user}, function(response){
+                    if (chrome.runtime.lastError) resolve('Name Data Storage Failure');
+                });
+                resolve('success');
             })
         })
         .catch(error => console.log(error))
@@ -43,7 +46,7 @@ function modifyUserStatus(statusBool, userInfo){
     else if (!statusBool){
         return new Promise (resolve => {
             //checks if there is stored login information to ensure there is a logged in account to log out.
-            chrome.storage.local.get(['userStatus', 'userInfo'], function (response) {
+            chrome.storage.local.get(['userStatus', 'user'], function (response) {
                 if (chrome.runtime.lastError) resolve ('Data Retrieval Failure');
 
                 if (response.userStatus === undefined) resolve ('No currently logged in user failure');
@@ -51,7 +54,7 @@ function modifyUserStatus(statusBool, userInfo){
                 fetch('https://wishr.loca.lt/logout', {
                     method: 'GET',
                     headers: {
-                        'AuthToken' : 'Basic' + btoa(`${response.userInfo.username}:${response.userInfo.password}`)
+                        'AuthToken' : 'Basic' + btoa(`${response.user}`)
                     }
                 })
                 .then (response => {
@@ -80,7 +83,7 @@ function createUserAccount(userInfo){
             method: 'GET',
             headers: {
                 'AuthToken': 'Create ' + btoa(`${userInfo.username}:${userInfo.password}`)
-            }
+            },
         })
         .then(response => {
             return new Promise (resolve => {
@@ -89,6 +92,21 @@ function createUserAccount(userInfo){
             });
         })
         .catch(error => console.log(error));
+}
+
+function getWishlist(userInfo, sendResponse){
+    url = 'https://wishr.loca.lt/wishlist/' + userInfo.username
+    console.log(url)
+    var wishXML = new XMLHttpRequest()
+    wishXML.onreadystatechange = function(){
+        if(wishXML.readyState === 4) {
+            xml = wishXML.response
+            sendResponse(xml);
+        }
+    }
+
+    wishXML.open("GET", url);
+    wishXML.send(userInfo.username);
 }
 
 /**
@@ -103,6 +121,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             .then(response => sendResponse(response))
             .catch(error => console.log(error));
         
+        return true;
+    }
+    else if (request.message === 'getWishlist'){
+        getWishlist(request.payload, sendResponse)
         return true;
     }
     else if (request.message === 'logout'){

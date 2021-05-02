@@ -14,8 +14,8 @@ document.querySelector('form').addEventListener('submit', event => {
     if (username && password){
         chrome.runtime.sendMessage({message: 'login', payload: {username, password}}, function (response){
             if (response === 'success'){
-                //Change to main user page here <- TO-DO
                 console.log('Login Successful');
+                window.location.href = "wishlist.html";
             }
             else {
                 console.log("Login Failed");
