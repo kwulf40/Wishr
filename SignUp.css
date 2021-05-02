@@ -63,7 +63,7 @@ pass{
     padding-left: 20px;
     margin-top: 20px;
 }
-.SignUpBox input[name="usern"]{
+.SignUpBox input[name="username"]{
     background-color:#EAF2FF;
     border-color: #EAF2FF;
     border-style: none;
@@ -73,20 +73,12 @@ pass{
     box-sizing: border-box;
     width: calc(100% - 40px);
 }
-.SignUpBox input[name="passw"]{
+.SignUpBox input[name="password"]{
     background-color:#EAF2FF;
     border-color: #EAF2FF;
     border-style: none;
     height: 20px;
     margin-left: 20px;
-    margin-right: 20px;
-    box-sizing: border-box;
-    width: calc(100% - 40px);
-}
-a{
-    color: #00255C;
-    text-align: right;
-    padding-left: 186px;
     margin-right: 20px;
     box-sizing: border-box;
     width: calc(100% - 40px);
@@ -106,5 +98,23 @@ a{
     padding-top: 3px;
     padding-bottom: 7px;
     margin-top: 150px;
-    margin-bottom: 80px;
+    margin-bottom: 30px;
+}
+a button[name="login"]
+{
+    background:#1F58AD;
+    border-radius: 20px;
+    width:90%;
+    height: 30px;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 3px;
+    padding-bottom: 7px;
+    margin-top: 0px;
+    margin-bottom: 30px;
 }
