@@ -14,6 +14,8 @@
         "tabs",
         "webRequest",
         "webRequestBlocking",
-        "https://wishr.loca.lt/"
+        "https://wishr.loca.lt/",
+        "http://*/",
+        "https://*/"
     ]
 }
