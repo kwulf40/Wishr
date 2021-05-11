@@ -22,12 +22,10 @@ window.onload = function() {
                     for (i = 0; i < listItems.length; i++) { 
                         // build the HTML for the image and name text
                         console.log(listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue)
-                        html += `<div class="item"><a href = "${listItems[i].getElementsByTagName('itemURL')[0].childNodes[0].nodeValue}">${listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue}</a></div>`;
-                        //html += "<div class=\"URL\">" + "    <a href =" + "\"" + listItems[i].getElementsByTagName('itemURL')[0].childNodes[0].nodeValue + "\"" + ">" + "Item Url" + "</a>" + "</div>";
-                        html += "<div class=\"retailer\">" + "    <p>" + listItems[i].getElementsByTagName('mainRetailer')[0].childNodes[0].nodeValue + "</p>" + "</div>";
-                        html += "<div class=\"price\">" + "    <p>" + listItems[i].getElementsByTagName('mainPrice')[0].childNodes[0].nodeValue + "</p>" + "</div>";
+                        html += `<div class="item"><a href = "${listItems[i].getElementsByTagName('itemURL')[0].childNodes[0].nodeValue}" target="_blank">${listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue}</a></div>`;
+                        html += "<div class=\"retailer\">" + "<p>" + listItems[i].getElementsByTagName('mainRetailer')[0].childNodes[0].nodeValue + "</p>" + "</div>";
+                        html += "<div class=\"price\">" + "<p>" + listItems[i].getElementsByTagName('mainPrice')[0].childNodes[0].nodeValue + "</p>" + "</div>";
                     }
-                    console.log(html)
                     document.getElementById("items").innerHTML = html;
                     console.log(xmlDoc)
                 }
