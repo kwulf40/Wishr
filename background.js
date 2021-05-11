@@ -54,7 +54,7 @@ function modifyUserStatus(statusBool, userInfo){
                 fetch('https://wishr.loca.lt/logout', {
                     method: 'GET',
                     headers: {
-                        'AuthToken' : 'Basic' + btoa(`${response.user}`)
+                        'AuthToken' : 'Basic ' + btoa(`${response.user}`)
                     }
                 })
                 .then (response => {
@@ -109,6 +109,24 @@ function getWishlist(userInfo, sendResponse){
     wishXML.send(userInfo.username);
 }
 
+function updateWishlist(userInfo){
+    console.log(userInfo)
+    url = 'https://wishr.loca.lt/wishlist/' + userInfo.username + '/update'
+    return fetch(url, {
+            method: 'GET',
+            headers: {
+                'XML': 'Update ' + btoa(`${userInfo.newItemXML}`)
+            },
+        })
+        .then(response => {
+            return new Promise (resolve => {
+                if (response.status !== 200) resolve ('fail');
+                else resolve('success');
+            });
+        })
+        .catch(error => console.log(error));
+}
+
 chrome.webRequest.onBeforeSendHeaders.addListener(
     function(details) {
       for (var i = 0; i < details.requestHeaders.length; ++i) {
@@ -150,6 +168,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
     else if (request.message === 'createAccount'){
         createUserAccount(request.payload)
+        .then(response => sendResponse(response))
+        .catch(error => console.log(error));
+
+        return true;
+    }
+    else if (request.message === 'updateWish'){
+        updateWishlist(request.payload)
         .then(response => sendResponse(response))
         .catch(error => console.log(error));
 

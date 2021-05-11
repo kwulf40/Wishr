@@ -23,8 +23,8 @@
 
         <div class="name">
             <h4 style="padding-left: 10px;">Item</h4>
-            <h4 style="padding-left: 125px;">Retailer</h4>
-            <h4 style="padding-left: 20px;">Price</h4>
+            <h4 style="padding-left: 240px;">Retailer</h4>
+            <h4 style="padding-left: 40px;">Price</h4>
         </div>
 
 
@@ -64,7 +64,8 @@
 
         <div class="footer">
             <a href="#">
-                <img src="star.png" alt="Favorites" height="50px" width="50px">
+                <img src="star.png" id="AddToWishlist" alt="Favorites" height="50px" width="50px">
+                    <script src = "updateScript.js"></script>
             </a>
             <a href="#" class="home"> 
                 <img src="home.png" alt="Home/All" height="36px" width="36px">
@@ -74,22 +75,6 @@
             </a>
            
         </div>
-
-    <!-- <script src="placeholder.js"> 
-
-/* should close class items when x is clicked,  NOT WORKING
-https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_close_list_items */
-
-var closebtns = document.getElementsByClassName("items");
-var i;
-
-for (i = 0; i < closebtns.length; i++) {
-  closebtns[i].addEventListener("click", function() {
-    this.parentElement.style.display = 'none';
-  });
-}
-
-    </script>--> 
 
   </body>
 </html>
