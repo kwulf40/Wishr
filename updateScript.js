@@ -50,6 +50,7 @@ function receiveText(response){
         chrome.runtime.sendMessage({message: 'updateWish', payload: {username, newItemXML}}, function (response){
             if (response === 'success'){
                 console.log('Update Successful');
+                alert("Added to Wishlist!");
             }
             else {
                 console.log("Update Failed");
