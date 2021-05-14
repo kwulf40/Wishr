@@ -1,7 +1,8 @@
 body{
     margin: 0px;
     width: 450px;
-    height: 650px;
+    height: 600px;
+    overflow: hidden;
 }
 .head{
     display: flex;
@@ -25,8 +26,8 @@ body{
     background-color: #739FE1;
     float:right;   
     padding-top: 7px;
-    padding-right: 7px;
-    height: 72px;
+    padding-right: 9px;
+    height: 74px;
 
 }
 .heading h1{
@@ -95,6 +96,8 @@ body{
     position: relative;
     z-index: 10;
     margin-top: 0px;*/
+    width: 400px;
+    height: 300px;
     padding: 10px;
     padding-right: 25px;;
     background-image:
@@ -105,10 +108,14 @@ body{
         rgba(255, 255, 255, 0.9) 0%,
         rgba(255, 255, 255, 0.9) 100%);
     background-clip: content-box, padding-box;
-    display: flex;
-    flex-direction: row;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
     margin:0px;
-    float: left;
+}
+
+.WishlistTable{
+    border-spacing: 10px;
 }
 
 .item{
@@ -118,18 +125,20 @@ body{
     font-weight: bold;
     margin-top: 0px;
     padding-top: 0px;
-    width: 200px;
-    float: left;
+    width: 300px;
 }
 
 .retailer{
-    padding-left: 46px;
+    padding-left: 15px;
     font-size: 11px;
+    text-align: left;
 }
 
 .price{
     padding-left: 24px;
     font-size: 11px;
+    text-align: right;
+    width: 100%;
 }
 
 .close {

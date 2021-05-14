@@ -33,8 +33,7 @@ function receiveText(response){
         }
     }
 
-    var shortItemName = cleanTextArray[0].split(":")
-    shortItemName = "<listitem><itemName>"+shortItemName[1].substring(0,47).trim()+"..."+"</itemName>"
+    shortItemName = "<listitem>Item<itemName>"+cleanTextArray[0].substring(0,47).trim()+"..."+"</itemName>"
     itemURL = "<itemURL><![CDATA["+cleanTextArray[1].trim()+"]]></itemURL>"
     imageURL = "<imageURL><![CDATA["+cleanTextArray[2].trim()+"]]></imageURL>" 
     retailer = "<mainRetailer>"+cleanTextArray[3].trim()+"</mainRetailer>"
