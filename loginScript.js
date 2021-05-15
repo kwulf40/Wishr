@@ -1,3 +1,9 @@
+chrome.runtime.sendMessage({message: 'userStatus'}, function (response){
+    if (response === true){
+        window.location.href = "wishlist.html";
+    }
+})
+
 /**
  * loginScript
  * When this script is called on a "submit" event, the script will retrieve the

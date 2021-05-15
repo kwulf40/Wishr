@@ -60,7 +60,7 @@ function modifyUserStatus(statusBool, userInfo){
                 .then (response => {
                     if (response.status !== 200) resolve ('Response Status Failure');
 
-                    chrome.storage.local.set({userStatus: statusBool, userInfo: {} }, function (response){
+                    chrome.storage.local.set({userStatus: statusBool, user: {} }, function (response){
                         if (chrome.runtime.lastError) resolve ('Data Write Failure');
 
                         signedIn = statusBool;
