@@ -110,8 +110,8 @@ function getWishlist(userInfo, sendResponse){
 }
 
 function updateWishlist(userInfo){
-    console.log(userInfo)
     url = 'https://wishr.loca.lt/wishlist/' + userInfo.username + '/update'
+
     return fetch(url, {
             method: 'GET',
             headers: {
@@ -125,6 +125,24 @@ function updateWishlist(userInfo){
             });
         })
         .catch(error => console.log(error));
+}
+
+function deleteItem(userInfo){
+    url = 'https://wishr.loca.lt/wishlist/'+ userInfo.username + '/delete'
+
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            'DeleteNum': 'Delete ' + btoa(`${userInfo.delNum}`)
+        },
+    })
+    .then(response => {
+        return new Promise (resolve => {
+            if (response.status !== 200) resolve ('fail');
+            else resolve('success');
+        });
+    })
+    .catch(error => console.log(error));
 }
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
@@ -175,6 +193,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
     else if (request.message === 'updateWish'){
         updateWishlist(request.payload)
+        .then(response => sendResponse(response))
+        .catch(error => console.log(error));
+
+        return true;
+    }
+    else if (request.message === 'deleteItem'){
+        deleteItem(request.payload)
         .then(response => sendResponse(response))
         .catch(error => console.log(error));
 
