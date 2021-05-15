@@ -51,7 +51,9 @@ window.onload = function() {
 }
 
 function deleteItem(){
-    var delCheck = confirm("Delete this item?")
+    event.preventDefault();
+
+    var delCheck = window.confirm("Delete this item?")
     console.log(delCheck)
     if(delCheck === true){
         console.log("Delete: " + this.id);
