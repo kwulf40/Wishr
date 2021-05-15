@@ -37,8 +37,6 @@ window.onload = function() {
                     delButtons = document.getElementsByClassName("deleteButton")
                     var j;
                     for (j = 0; j < (listNum - 1); j++){
-                        //let delScript = document.createElement("script");
-                        //delScript.setAttribute("src", "deleteItem.js");
                         delButtons[j].addEventListener("click", deleteItem, false)
                     }
                     console.log(xmlDoc)
@@ -54,6 +52,7 @@ window.onload = function() {
 
 function deleteItem(){
     var delCheck = confirm("Delete this item?")
+    console.log(delCheck)
     if(delCheck === true){
         console.log("Delete: " + this.id);
         var delNum = this.id.replace(/\D/g, "");
