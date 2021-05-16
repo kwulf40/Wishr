@@ -40,12 +40,16 @@ function walmartDataRetrieve(){
     if (typeof(itemImage) != 'undefined' && itemImage != null){
         itemImage = document.getElementsByClassName("hover-zoom-hero-image")[0].getAttribute('srcset');
         itemImage = itemImage.replace('/', "").replace('/', "").split(" ");
-        pageInfo += itemImage[0] + " | ";
+        tempItemImage = itemImage[0].split("?");
+        finalItemImage = "http://" + tempItemImage[0]
+        pageInfo += finalItemImage + " | ";
     }
     else{
         itemImage = document.getElementsByClassName("prod-hero-image-image")[0].getAttribute('srcset');
         itemImage = itemImage.replace('/', "").replace('/', "").split(" ");
-        pageInfo += itemImage[0] + " | ";
+        tempItemImage = itemImage[0].split("?");
+        finalItemImage = "http://" + tempItemImage[0]
+        pageInfo += finalItemImage + " | ";
     }
     pageInfo += "Walmart" + " | ";
     var itemPrice = "";

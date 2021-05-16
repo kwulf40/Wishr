@@ -96,6 +96,13 @@ body{
 .WishlistTable{
     border-spacing: 10px;
 }
+.itemImage {
+    width: 50px;
+}
+.listImage {
+    max-width:100px;
+    height:auto
+}
 .item{
     font-size: 5px;
     color: black;
