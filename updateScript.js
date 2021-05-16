@@ -52,7 +52,7 @@ function receiveText(response){
                 document.location.reload(true);
             }
             else {
-                console.log("Update Failed");
+                console.log("Update Failed: Something on the webpage you're adding is causing an issue, please forward the url to the extenstion group.");
             }
         })
     })
