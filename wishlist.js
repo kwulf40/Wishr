@@ -61,8 +61,10 @@ function deleteItem(){
         var delNum = this.id.replace(/\D/g, "");
 
         chrome.storage.local.get('username', function (response) {
+            event.preventDefault();
             username = response.username
             chrome.runtime.sendMessage({message: 'deleteItem', payload: {username, delNum}}, function (response){
+                event.preventDefault();
                 if (response === 'success'){
                     console.log('Delete Successful');
                     alert("Item Deleted!");
