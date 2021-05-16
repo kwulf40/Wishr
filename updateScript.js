@@ -15,7 +15,7 @@ addToListButton.addEventListener('click', () =>{
 function receiveText(response){
     
     console.log(response[0])
-    var urlList = ["Amazon.com", "Walmart.com", "Target.com", "Walmart"];
+    var urlList = ["Amazon.com", "Walmart.com", "Target.com"];
     var htmlText = response[0];
     var cleanTextArray = []
 
@@ -34,10 +34,12 @@ function receiveText(response){
     }
 
     itemName = cleanTextArray[0].substring(0,47).trim()
-    itemName = itemName.replace(/:|'|\"|/g, "")
+    itemName = itemName.replace(/[^\x00-\x7F]|:|'|\"|/g, "")
     shortItemName = "<listitem>Item<itemName>"+itemName+"..."+"</itemName>"
-    itemURL = "<itemURL><![CDATA["+cleanTextArray[1].trim()+"]]></itemURL>"
+    itemURL = "<itemURL><![CDATA["+cleanTextArray[1].trim()+"/]]></itemURL>"
+    console.log(itemURL)
     imageURL = "<imageURL><![CDATA["+cleanTextArray[2].trim()+"]]></imageURL>" 
+    console.log(imageURL)
     retailer = "<mainRetailer>"+cleanTextArray[3].trim()+"</mainRetailer>"
     price = "<mainPrice>"+cleanTextArray[4].trim()+"</mainPrice></listitem>"
 
