@@ -23,10 +23,15 @@ window.onload = function() {
                     listNum = 1;
                     for (i = 0; i < listItems.length; i++) { 
                         // build the HTML for the image and name text
-                        console.log(listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue)
-                        html += `<tr><td class="item"><a href = "${listItems[i].getElementsByTagName('itemURL')[0].childNodes[0].nodeValue}" target="_blank">${listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue}</a></td>`;
-                        html += "<td class=\"retailer\">"  + listItems[i].getElementsByTagName('mainRetailer')[0].childNodes[0].nodeValue + "</td>";
-                        html += "<td class=\"price\">" + listItems[i].getElementsByTagName('mainPrice')[0].childNodes[0].nodeValue + "</td>";
+                        var itemName = listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue;
+                        var itemURL = listItems[i].getElementsByTagName('itemURL')[0].childNodes[0].nodeValue;
+                        var mainRetailer = listItems[i].getElementsByTagName('mainRetailer')[0].childNodes[0].nodeValue;
+                        var mainPrice = listItems[i].getElementsByTagName('mainPrice')[0].childNodes[0].nodeValue;
+
+                        console.log(itemName)
+                        html += `<tr><td class="item"><a href = "${itemURL}" target="_blank">${itemName}</a></td>`;
+                        html += "<td class=\"retailer\">"  + mainRetailer + "</td>";
+                        html += "<td class=\"price\">" + mainPrice + "</td>";
                         html += "<td><button class=\"deleteButton\" id=\"Item" + listNum + "\">&times;</button></td></tr>"
                         listNum += 1;
                     }
@@ -64,7 +69,7 @@ function deleteItem(){
             chrome.runtime.sendMessage({message: 'deleteItem', payload: {username, delNum}}, function (response){
                 if (response === 'success'){
                     console.log('Delete Successful');
-                    alert("Item Deleted!");
+                    //alert("Item Deleted!");
                     document.location.reload(true);
                 }
                 else {
