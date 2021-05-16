@@ -65,6 +65,7 @@ function deleteItem(){
                 if (response === 'success'){
                     console.log('Delete Successful');
                     alert("Item Deleted!");
+                    document.location.reload(true);
                 }
                 else {
                     console.log("Delete Failed");

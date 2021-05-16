@@ -50,6 +50,7 @@ function receiveText(response){
             if (response === 'success'){
                 console.log('Update Successful');
                 alert("Added to Wishlist!");
+                document.location.reload(true);
             }
             else {
                 console.log("Update Failed");
