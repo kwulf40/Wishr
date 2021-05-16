@@ -50,7 +50,20 @@ function receiveText(response){
         chrome.runtime.sendMessage({message: 'updateWish', payload: {username, newItemXML}}, function (response){
             if (response === 'success'){
                 console.log('Update Successful');
-                alert("Added to Wishlist!");
+                iosCheck = iOS()
+                if (iosCheck === false){
+                    alert("Added to Wishlist!");
+                }
+                else{
+                    Window.alert = function (name) {
+                        var iframe = document.createElement("IFRAME");
+                        iframe.style.display = "none";
+                        iframe.setAttribute("src", 'data:text/plain,');
+                        document.documentElement.appendChild(iframe);
+                        window.frames[0].window.alert(name);
+                        iframe.parentNode.removeChild(iframe);
+                    }
+                }
                 document.location.reload(true);
             }
             else {
@@ -68,6 +81,5 @@ function cleanURL(urlListIn, inText){
             cleanString[i] = cleanString[i].replace(urlListIn[j], "");
         }
     }
-
     return cleanString;
 }

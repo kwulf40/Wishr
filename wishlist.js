@@ -54,17 +54,30 @@ window.onload = function() {
 function deleteItem(){
     event.preventDefault();
 
-    var delCheck = window.confirm("Delete this item?")
+    iosCheck = iOS();
+    if (iosCheck === false){
+        var delCheck = window.confirm("Delete this item?")
+    }
+    else{
+        window.confirm = function (message) {
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            var alertFrame = window.frames[0];
+            var result = alertFrame.window.confirm(message);
+            iframe.parentNode.removeChild(iframe);
+            return result;
+        };
+    }
+
     console.log(delCheck)
     if(delCheck === true){
         console.log("Delete: " + this.id);
         var delNum = this.id.replace(/\D/g, "");
-
         chrome.storage.local.get('username', function (response) {
-            event.preventDefault();
             username = response.username
             chrome.runtime.sendMessage({message: 'deleteItem', payload: {username, delNum}}, function (response){
-                event.preventDefault();
                 if (response === 'success'){
                     console.log('Delete Successful');
                     alert("Item Deleted!");
@@ -77,3 +90,16 @@ function deleteItem(){
         })
     }
 }
+
+function iOS() {
+    return [
+      'iPad Simulator',
+      'iPhone Simulator',
+      'iPod Simulator',
+      'iPad',
+      'iPhone',
+      'iPod'
+    ].includes(navigator.platform)
+    // iPad on iOS 13 detection
+    || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  }
