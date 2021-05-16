@@ -19,24 +19,19 @@ function receiveText(response){
     var htmlText = response[0];
     var cleanTextArray = []
 
-    //console.log(htmlText)
-
     if(htmlText)
     {
         cleanTextArray = cleanURL(urlList, htmlText);
         if (cleanTextArray){
             for(var i = 0; i < cleanTextArray.length; i++){
-            //alert(cleanTextArray[i]);
             console.log(cleanTextArray[i]);
-            //console.log("test" + i);
             }
         }
     }
-
     itemName = cleanTextArray[0].substring(0,47).trim()
-    itemName = itemName.replace(/[^\x00-\x7F]|:|'|\"|/g, "")
+    itemName = itemName.replace(/[^\x00-\x7F]|&|:|'|\"|/g, "")
     shortItemName = "<listitem>Item<itemName>"+itemName+"..."+"</itemName>"
-    itemURL = "<itemURL><![CDATA["+cleanTextArray[1].trim()+"/]]></itemURL>"
+    itemURL = "<itemURL><![CDATA["+cleanTextArray[1].trim()+"]]></itemURL>"
     console.log(itemURL)
     imageURL = "<imageURL><![CDATA["+cleanTextArray[2].trim()+"]]></imageURL>" 
     console.log(imageURL)

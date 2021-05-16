@@ -15,12 +15,18 @@ function amazonDataRetrieve(){
     pageInfo += document.getElementById('landingImage').getAttribute("src") + " | ";
     pageInfo += "Amazon" + " | ";
     var itemPrice = document.getElementById('priceblock_ourprice')
+    var itemPrice2 = document.getElementById('priceblock_dealprice')
+    var itemPrice3 = document.getElementById('priceblock_saleprice')
     if (typeof(itemPrice) != 'undefined' && itemPrice != null){
         itemPrice = document.getElementById('priceblock_ourprice').innerHTML;
         pageInfo += itemPrice;
     }
-    else{
+    else if (typeof(itemPrice2) != 'undefined' && itemPrice2 != null){
         itemPrice = document.getElementById('priceblock_dealprice').innerHTML;
+        pageInfo += itemPrice;
+    }
+    else if (typeof(itemPrice3) != 'undefined' && itemPrice3 != null){
+        itemPrice = document.getElementById('priceblock_saleprice').innerHTML;
         pageInfo += itemPrice;
     }
     return pageInfo;
