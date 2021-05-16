@@ -24,13 +24,15 @@ function receiveText(response){
         cleanTextArray = cleanURL(urlList, htmlText);
         if (cleanTextArray){
             for(var i = 0; i < cleanTextArray.length; i++){
-            console.log(cleanTextArray[i]);
+            console.log(cleanTextArray[i]);0
             }
         }
     }
-    itemName = cleanTextArray[0].substring(0,47).trim()
+    itemName = cleanTextArray[0].substring(0,40).trim()
     itemName = itemName.replace(/[^\x00-\x7F]|&|:|'|\"|/g, "")
-    shortItemName = "<listitem>Item<itemName>"+itemName+"..."+"</itemName>"
+    let finalItemName = itemName.split(/( {2})+/g);
+    console.log(finalItemName)
+    shortItemName = "<listitem>Item<itemName>"+finalItemName[0]+"..."+"</itemName>"
     itemURL = "<itemURL><![CDATA["+cleanTextArray[1].trim()+"]]></itemURL>"
     console.log(itemURL)
     imageURL = "<imageURL><![CDATA["+cleanTextArray[2].trim()+"]]></imageURL>" 
