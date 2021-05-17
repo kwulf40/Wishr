@@ -59,16 +59,7 @@ function deleteItem(){
         var delCheck = window.confirm("Delete this item?")
     }
     else{
-        window.confirm = function (message) {
-            var iframe = document.createElement("IFRAME");
-            iframe.style.display = "none";
-            iframe.setAttribute("src", 'data:text/plain,');
-            document.documentElement.appendChild(iframe);
-            var alertFrame = window.frames[0];
-            var result = alertFrame.window.confirm(message);
-            iframe.parentNode.removeChild(iframe);
-            return result;
-        };
+        var delCheck = window.confirm2("Delete this item?")
     }
 
     console.log(delCheck)
@@ -102,4 +93,15 @@ function iOS() {
     ].includes(navigator.platform)
     // iPad on iOS 13 detection
     || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
-  }
+}
+
+window.confirm2 = function (message) {
+    var iframe = document.createElement("IFRAME");
+    iframe.style.display = "none";
+    iframe.setAttribute("src", 'data:text/plain,');
+    document.documentElement.appendChild(iframe);
+    var alertFrame = window.frames[0];
+    var result = alertFrame.window.confirm(message);
+    iframe.parentNode.removeChild(iframe);
+    return result;
+};

@@ -55,14 +55,7 @@ function receiveText(response){
                     alert("Added to Wishlist!");
                 }
                 else{
-                    Window.alert = function (name) {
-                        var iframe = document.createElement("IFRAME");
-                        iframe.style.display = "none";
-                        iframe.setAttribute("src", 'data:text/plain,');
-                        document.documentElement.appendChild(iframe);
-                        window.frames[0].window.alert(name);
-                        iframe.parentNode.removeChild(iframe);
-                    }
+                    Window.alert("Added to Wishlist!");
                 }
                 document.location.reload(true);
             }
@@ -82,4 +75,13 @@ function cleanURL(urlListIn, inText){
         }
     }
     return cleanString;
+}
+
+Window.alert = function (string) {
+    var iframe = document.createElement("IFRAME");
+    iframe.style.display = "none";
+    iframe.setAttribute("src", 'data:text/plain,');
+    document.documentElement.appendChild(iframe);
+    window.frames[0].window.alert(string);
+    iframe.parentNode.removeChild(iframe);
 }
