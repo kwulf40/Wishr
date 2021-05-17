@@ -48,16 +48,14 @@ function receiveText(response){
         username = response.username
     
         chrome.runtime.sendMessage({message: 'updateWish', payload: {username, newItemXML}}, function (response){
+            var addedDialog = document.getElementById('itemAddedDialog');
             if (response === 'success'){
                 console.log('Update Successful');
-                iosCheck = iOS()
-                if (iosCheck === false){
-                    alert("Added to Wishlist!");
-                }
-                else{
-                    Window.alert("Added to Wishlist!");
-                }
-                document.location.reload(true);
+                addedDialog.showModal();
+                addedDialog.addEventListener('close', function onAddedClose(){
+                    document.location.reload(true);
+                });
+
             }
             else {
                 console.log("Update Failed: Something on the webpage you're adding is causing an issue, please forward the url to the extenstion group.");
@@ -75,13 +73,4 @@ function cleanURL(urlListIn, inText){
         }
     }
     return cleanString;
-}
-
-Window.alert = function (string) {
-    var iframe = document.createElement("IFRAME");
-    iframe.style.display = "none";
-    iframe.setAttribute("src", 'data:text/plain,');
-    document.documentElement.appendChild(iframe);
-    window.frames[0].window.alert(string);
-    iframe.parentNode.removeChild(iframe);
 }

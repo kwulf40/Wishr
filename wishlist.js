@@ -53,26 +53,31 @@ window.onload = function() {
 
 function deleteItem(){
     event.preventDefault();
+    itemID = this.id;
+    console.log(itemID);
+    var delDialog = document.getElementById('deleteDialog');
 
-    iosCheck = iOS();
-    if (iosCheck === false){
-        var delCheck = window.confirm("Delete this item?")
-    }
-    else{
-        var delCheck = window.confirm2("Delete this item?")
-    }
+    delDialog.showModal();
 
-    console.log(delCheck)
-    if(delCheck === true){
-        console.log("Delete: " + this.id);
-        var delNum = this.id.replace(/\D/g, "");
+    delDialog.addEventListener('close', onClose.bind(this));
+}
+
+function onClose(){
+    var delDialog = document.getElementById('deleteDialog');
+    var delConfirmDialog = document.getElementById('delConfirmDialog');
+    console.log(this)
+    if(delDialog.returnValue == "true"){
+        console.log("Delete: " + itemID);
+        var delNum = itemID.replace(/\D/g, "");
         chrome.storage.local.get('username', function (response) {
             username = response.username
             chrome.runtime.sendMessage({message: 'deleteItem', payload: {username, delNum}}, function (response){
                 if (response === 'success'){
                     console.log('Delete Successful');
-                    alert("Item Deleted!");
-                    document.location.reload(true);
+                    delConfirmDialog.showModal();
+                    delConfirmDialog.addEventListener('close', function onAddedClose(){
+                        document.location.reload(true);
+                    });
                 }
                 else {
                     console.log("Delete Failed");
@@ -81,27 +86,3 @@ function deleteItem(){
         })
     }
 }
-
-function iOS() {
-    return [
-      'iPad Simulator',
-      'iPhone Simulator',
-      'iPod Simulator',
-      'iPad',
-      'iPhone',
-      'iPod'
-    ].includes(navigator.platform)
-    // iPad on iOS 13 detection
-    || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
-}
-
-window.confirm2 = function (message) {
-    var iframe = document.createElement("IFRAME");
-    iframe.style.display = "none";
-    iframe.setAttribute("src", 'data:text/plain,');
-    document.documentElement.appendChild(iframe);
-    var alertFrame = window.frames[0];
-    var result = alertFrame.window.confirm(message);
-    iframe.parentNode.removeChild(iframe);
-    return result;
-};
