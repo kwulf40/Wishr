@@ -21,6 +21,9 @@ else if (window.location.href.indexOf("walmart.com") > -1){
 else if (window.location.href.indexOf("target.com") > -1){
     targetDataRetrieve()
 }
+else if (window.location.href.indexOf("ebay.com") > -1){
+    ebayDataRetrieve()
+}
 
 function amazonDataRetrieve(){
     pageInfo = ""
@@ -96,12 +99,18 @@ function targetDataRetrieve(){
     return pageInfo;
 }
 
-/*function ebayDataRetrieve(){
+function ebayDataRetrieve(){
     pageInfo = ""
     itemName = document.getElementById("itemTitle").innerText
     itemName = itemName.split('\n');
     fullName = itemName[1];
     pageInfo += fullName + " | ";
     pageInfo += window.location.href + " | ";
-    
-}*/
+    pageInfo += document.getElementById('icImg').getAttribute('src') + " | ";
+    pageInfo += "Ebay" + " | "
+    itemPrice = document.getElementById('prcIsum_bidPrice').innerText;
+    itemPrice = itemPrice.split(' ');
+    finalPrice = itemPrice[1];
+    pageInfo += finalPrice
+    return pageInfo;
+}
