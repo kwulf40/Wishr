@@ -37,8 +37,8 @@ window.onload = function() {
                     var headers = '<tr><th style="padding-left: 5px">Image</th><th style="padding-left: 40px; padding-right: 40px;">Item</th><th style="padding-left: 15px; text-align:center;">Retailer</th><th style="padding-left: 20px; text-align:right;">Price</th><th style="padding-left: 20px;"></th></tr>'
                     html += headers;
                     listNum = 1;
+                    // build the HTML for each item in the list
                     for (i = 0; i < listItems.length; i++) { 
-                        // build the HTML for the image and name text
                         console.log(listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue)
                         html += "<tr><td class=\"itemImage\"><img class=\"listImage\" src = " +listItems[i].getElementsByTagName('imageURL')[0].childNodes[0].nodeValue +"></img></td>";
                         html += `<td class="item"><a href = "${listItems[i].getElementsByTagName('itemURL')[0].childNodes[0].nodeValue}" target="_blank">${listItems[i].getElementsByTagName('itemName')[0].childNodes[0].nodeValue}</a></td>`;

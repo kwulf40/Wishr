@@ -220,6 +220,29 @@ button[id="confirmButton3"]{
     margin-left: -35px;
     text-align: center;
 }
+dialog[id="failConfirmDialog"]{
+    top: 15%;
+    width: 150px;  
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid #00255C;
+}
+button[id="confirmButton4"]{
+    display: inline-block;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8em;
+    background: #1F58AD;
+    border-bottom: 1px solid #1F58AD;
+    color: white;
+    font-weight: bold;
+    margin: 0.15rem;
+    margin-left: -35px;
+    text-align: center;
+}
 .footer{
     position: fixed;
     left:0;
