@@ -95,3 +95,13 @@ function targetDataRetrieve(){
     pageInfo += itemPrice;
     return pageInfo;
 }
+
+/*function ebayDataRetrieve(){
+    pageInfo = ""
+    itemName = document.getElementById("itemTitle").innerText
+    itemName = itemName.split('\n');
+    fullName = itemName[1];
+    pageInfo += fullName + " | ";
+    pageInfo += window.location.href + " | ";
+    
+}*/

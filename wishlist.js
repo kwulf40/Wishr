@@ -34,7 +34,7 @@ window.onload = function() {
                     var i;
                     var listItems = xmlDoc.getElementsByTagName('listitem');
                     var html = '<table class=\"WishlistTable\"><tbody>';
-                    var headers = '<tr><th style="padding-left: 5px">Image</th><th style="padding-left: 10px; padding-right: 10px;">Item</th><th style="padding-left: 15px; text-align:center;">Retailer</th><th style="padding-left: 20px; text-align:right;">Price</th><th style="padding-left: 20px;"></th></tr>'
+                    var headers = '<tr><th style="padding-left: 5px">Image</th><th style="padding-left: 40px; padding-right: 40px;">Item</th><th style="padding-left: 15px; text-align:center;">Retailer</th><th style="padding-left: 20px; text-align:right;">Price</th><th style="padding-left: 20px;"></th></tr>'
                     html += headers;
                     listNum = 1;
                     for (i = 0; i < listItems.length; i++) { 
