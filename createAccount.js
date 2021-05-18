@@ -1,6 +1,6 @@
 /**
  * createAccount script
- * When this script is called on a "submit" event, the script will retrieve the
+ * When this script is called by createAccount.html, the script will retrieve the
  * input username and password, and pass the credentials to background.js to be passed to the 
  * server.
  * 

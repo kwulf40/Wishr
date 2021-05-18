@@ -1,16 +1,23 @@
+/**
+ * updateScript.js
+ * updateScript.js is activated by the star button on the Wishr wishlist.html UI.
+ * 
+ * On button click, the script first executes the dataRetrieve.js script in the webpage open behind the extension.
+ * Once data has been retrieved from the page, the item name is first stripped of extra information to just the Item name.
+ * Then the data is then assembled with the proper XML tags. The script gets the username from local storage,
+ * and sends both the newly-formed XML and the user's username to the background script to be sent to the database.
+ * 
+ * On success, a success message is displayed to the user and wishlist.html is refreshed.
+ */
+
 const addToListButton = document.getElementById("AddToWishlist");
-
 addToListButton.addEventListener('click', () =>{
-
     chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-        //console.log(tabs[0]);
         chrome.tabs.executeScript(tabs[0].id,{
             file: "/dataRetrieve.js"
         },receiveText);
     });
 });
-
-
 
 function receiveText(response){
     

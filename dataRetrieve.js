@@ -1,3 +1,17 @@
+/**
+ * dataRetrieve.js
+ * This script is injected by updateScript.js into the currently open primary webpage.
+ * This script is responsible for taking a retail item and getting the info needed to store
+ * it within a wishlist.
+ * 
+ * First, the script checks the url of the page, and runs the html scrape script depending on the url.
+ * 
+ * Then, the corresponding function is called to get the item information based on the layout of the page
+ * of the specified retailer.
+ * 
+ * Finally, this function returns the item information back
+ */
+
 if (window.location.href.indexOf("amazon.com") > -1) {
     amazonDataRetrieve()
 }

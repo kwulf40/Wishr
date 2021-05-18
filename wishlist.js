@@ -1,6 +1,22 @@
+/**
+ * wishlist.js
+ * wishlist.js runs on the page load of wishlist.html.
+ * This function sends a message to the server to retrieve a users wishlist, 
+ * parses the incoming XML to a string, then adds HTML headers, delete buttons, and listners.
+ * This HTML forms the user's wishlist that is appended to the id="items" in wishlist.html.
+ * Prints an error message if the wishlist fails to be retrieved.
+ * 
+ * The function called by an item's delete button in the wishlist, deleteItem() shows 
+ * a confirmation screen, and on confirmation from the user, binds the item's index value to the onClose()
+ * function that runs when confirmation modal is closed.
+ * 
+ * onClose() checks that the user confirmed the deletion, and if so, sends the item index number to the server
+ * to be deleted in the database. On success, an additional modal will be shown for successful deletion acknowledgment,
+ * and the wishlist is refreshed after the acknowledgment is closed.
+ * On fail, a message is logged to the console.
+ */
 window.onload = function() {
     username = ''
-
     chrome.storage.local.get(['username'], function(response){
         if (chrome.runtime.lastError) return false;
         else {
