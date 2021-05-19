@@ -27,7 +27,8 @@ else if (window.location.href.indexOf("ebay.com") > -1){
 
 function amazonDataRetrieve(){
     pageInfo = ""
-    pageInfo += document.getElementsByTagName('title')[0].text + " | "
+    itemName = document.getElementsByTagName('title')[0].text
+    pageInfo += itemName.replace(/\|/g, '&') + " | "
     pageInfo += window.location.href + " | ";
     pageInfo += document.getElementById('landingImage').getAttribute("src") + " | ";
     pageInfo += "Amazon" + " | ";

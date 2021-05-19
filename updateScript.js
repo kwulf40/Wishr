@@ -37,9 +37,9 @@ function receiveText(response){
         }
         itemName = cleanTextArray[0].substring(0,40).trim()
         itemName = itemName.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '')
-        itemName = itemName.replace(/[^\x00-\x7F]|&|:|'|\"|/g, "")
+        itemName = itemName.replace(/[^\x00-\x7F]|&|:|'|"|/g, "")
         let finalItemName = itemName.split(/( {2})+/g);
-        console.log(finalItemName)
+        console.log(finalItemName[0])
         shortItemName = "<listitem>Item<itemName>"+finalItemName[0]+"..."+"</itemName>"
         itemURL = "<itemURL><![CDATA["+cleanTextArray[1].trim()+"]]></itemURL>"
         console.log(itemURL)
