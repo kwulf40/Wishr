@@ -69,8 +69,8 @@ function amazonDataRetrieve(){
 
 function walmartDataRetrieve(){
     pageInfo = ""
-    itemName = document.getElementsByTagName('h1')[0].innerHTML + " | ";
-    pageInfo +=  itemName.replace(/\|/g, '&');
+    itemName = document.getElementsByTagName('h1')[0].innerHTML;
+    pageInfo +=  itemName.replace(/\|/g, '&') + " | ";
     pageInfo += window.location.href + " | ";
     var itemImage = document.getElementsByClassName("hover-zoom-hero-image")[0];
     if (typeof(itemImage) != 'undefined' && itemImage != null){
@@ -109,7 +109,7 @@ function targetDataRetrieve(){
     else if (typeof(itemImage2) != 'undefined' && itemImage2 != null){
         finalImage = document.getElementsByClassName('ZoomedImage__Zoomed-sc-1j8d1oa-0 dmkiKr')[0].previousElementSibling.getAttribute('src') + " | ";
     }
-    else if (typeof(itemImage2) != 'undefined' && itemImage2 != null){
+    else if (typeof(itemImage3) != 'undefined' && itemImage3 != null){
         finalImage = document.getElementsByClassName("slideDeckPicture")[0].firstElementChild.firstElementChild.firstElementChild.firstElementChild.getAttribute('src') + " | ";
     }
     pageInfo += finalImage;
@@ -154,12 +154,27 @@ function etsyDataRetrieve(){
     itemName = document.getElementsByTagName('h1')[0].innerText;
     pageInfo += itemName + " | ";
     pageInfo += window.location.href + " | ";
-    pageInfo += document.getElementsByClassName('wt-max-width-full wt-horizontal-center wt-vertical-center carousel-image wt-rounded')[0].getAttribute('src') + " | ";
+    itemImage = document.getElementsByClassName('wt-max-width-full wt-horizontal-center wt-vertical-center carousel-image wt-rounded')[0];
+    itemImage2 = document.getElementsByClassName('anchored-listing-image wt-width-full wt-rounded-01')[0]
+    if (typeof(itemImage) != 'undefined' && itemImage != null){
+        finalImage = document.getElementsByClassName('wt-max-width-full wt-horizontal-center wt-vertical-center carousel-image wt-rounded')[0].getAttribute('src') + " | ";
+    }
+    else if (typeof(itemImage2) != 'undefined' && itemImage2 != null){
+        finalImage = document.getElementsByClassName('anchored-listing-image wt-width-full wt-rounded-01')[0].getAttribute('style');
+        finalImage = finalImage.replace("background-image: url(\"", "");
+        finalImage = finalImage.replace("\");", "") + " | ";
+    }
+    pageInfo += finalImage;
     pageInfo += "Etsy" + " | ";
     itemPrice = document.getElementsByClassName('wt-text-title-03 wt-mr-xs-2')[0];
+    itemPrice2 = document.getElementsByClassName('currency-value')[0];
     if (typeof(itemPrice) != 'undefined' && itemPrice != null){
         finalPrice = document.getElementsByClassName('wt-text-title-03 wt-mr-xs-2')[0].innerText;
         finalPrice = finalPrice.replace(/[^0-9.$]/g, '');
+    }
+    else if (typeof(itemPrice2) != 'undefined' && itemPrice2 != null){
+        finalPrice = document.getElementsByClassName('currency-symbol')[0].innerText;
+        finalPrice += document.getElementsByClassName('currency-value')[0].innerText;
     }
     pageInfo += finalPrice;
     return pageInfo;
