@@ -24,6 +24,9 @@ else if (window.location.href.indexOf("target.com") > -1){
 else if (window.location.href.indexOf("ebay.com") > -1){
     ebayDataRetrieve()
 }
+else if (window.location.href.indexOf("etsy.com") > -1){
+    etsyDataRetrieve()
+}
 
 function amazonDataRetrieve(){
     pageInfo = ""
@@ -132,7 +135,7 @@ function ebayDataRetrieve(){
     pageInfo += fullName + " | ";
     pageInfo += window.location.href + " | ";
     pageInfo += document.getElementById('icImg').getAttribute('src') + " | ";
-    pageInfo += "Ebay" + " | "
+    pageInfo += "Ebay" + " | ";
     var itemPrice = document.getElementById("prcIsum");
     if (typeof(itemPrice) != 'undefined' && itemPrice != null){
         itemPrice = document.getElementById("prcIsum").innerText
@@ -142,6 +145,22 @@ function ebayDataRetrieve(){
     }
     itemPrice = itemPrice.split(' ');
     finalPrice = itemPrice[1];
+    pageInfo += finalPrice;
+    return pageInfo;
+}
+
+function etsyDataRetrieve(){
+    pageInfo = "";
+    itemName = document.getElementsByTagName('h1')[0].innerText;
+    pageInfo += itemName + " | ";
+    pageInfo += window.location.href + " | ";
+    pageInfo += document.getElementsByClassName('wt-max-width-full wt-horizontal-center wt-vertical-center carousel-image wt-rounded')[0].getAttribute('src') + " | ";
+    pageInfo += "Etsy" + " | ";
+    itemPrice = document.getElementsByClassName('wt-text-title-03 wt-mr-xs-2')[0];
+    if (typeof(itemPrice) != 'undefined' && itemPrice != null){
+        finalPrice = document.getElementsByClassName('wt-text-title-03 wt-mr-xs-2')[0].innerText;
+        finalPrice = finalPrice.replace(/[^0-9.$]/g, '');
+    }
     pageInfo += finalPrice;
     return pageInfo;
 }

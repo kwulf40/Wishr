@@ -15,7 +15,10 @@
         "webRequest",
         "webRequestBlocking",
         "https://wishr.loca.lt/",
-        "http://*/",
-        "https://*/"
+        "https://*.amazon.com/",
+        "https://*.walmart.com/",
+        "https://*.target.com/",
+        "https://*.ebay.com/",
+        "https://*.etsy.com/"
     ]
 }
