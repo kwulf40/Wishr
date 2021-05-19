@@ -30,45 +30,52 @@ function amazonDataRetrieve(){
     itemName = document.getElementsByTagName('title')[0].text
     pageInfo += itemName.replace(/\|/g, '&') + " | "
     pageInfo += window.location.href + " | ";
-    pageInfo += document.getElementById('landingImage').getAttribute("src") + " | ";
+    itemImage = document.getElementById('landingImage');
+    itemImage2 = document.getElementById('gc-standard-design-image')
+    if (typeof(itemImage) != 'undefined' && itemImage != null){
+        finalImage = document.getElementById('landingImage').getAttribute("src") + " | ";
+    }
+    else if (typeof(itemImage2) != 'undefined' && itemImage2 != null){
+        finalImage = document.getElementById('gc-standard-design-image').getAttribute("src") + " | ";
+    }
+    pageInfo += finalImage;
     pageInfo += "Amazon" + " | ";
     var itemPrice = document.getElementById('priceblock_ourprice')
     var itemPrice2 = document.getElementById('priceblock_dealprice')
     var itemPrice3 = document.getElementById('priceblock_saleprice')
+    var itemPrice4 = document.getElementsByClassName('a-color-price a-text-bold')[0]
     if (typeof(itemPrice) != 'undefined' && itemPrice != null){
-        itemPrice = document.getElementById('priceblock_ourprice').innerHTML;
-        pageInfo += itemPrice;
+        finalPrice = document.getElementById('priceblock_ourprice').innerHTML;
     }
     else if (typeof(itemPrice2) != 'undefined' && itemPrice2 != null){
-        itemPrice = document.getElementById('priceblock_dealprice').innerHTML;
-        pageInfo += itemPrice;
+        finalPrice = document.getElementById('priceblock_dealprice').innerHTML;
     }
     else if (typeof(itemPrice3) != 'undefined' && itemPrice3 != null){
-        itemPrice = document.getElementById('priceblock_saleprice').innerHTML;
-        pageInfo += itemPrice;
+        finalPrice = document.getElementById('priceblock_saleprice').innerHTML;
     }
+    else if (typeof(itemPrice4) != 'undefined' && itemPrice4 != null){
+        finalPrice = document.getElementsByClassName('a-color-price a-text-bold')[0].innerHTML;
+    }
+    pageInfo += finalPrice;
     return pageInfo;
 }
 
 function walmartDataRetrieve(){
     pageInfo = ""
-    pageInfo += document.getElementsByTagName('h1')[0].innerHTML + " | "
+    itemName = document.getElementsByTagName('h1')[0].innerHTML + " | ";
+    pageInfo +=  itemName.replace(/\|/g, '&');
     pageInfo += window.location.href + " | ";
     var itemImage = document.getElementsByClassName("hover-zoom-hero-image")[0];
     if (typeof(itemImage) != 'undefined' && itemImage != null){
         itemImage = document.getElementsByClassName("hover-zoom-hero-image")[0].getAttribute('srcset');
-        itemImage = itemImage.replace('/', "").replace('/', "").split(" ");
-        tempItemImage = itemImage[0].split("?");
-        finalItemImage = "http://" + tempItemImage[0]
-        pageInfo += finalItemImage + " | ";
     }
     else{
         itemImage = document.getElementsByClassName("prod-hero-image-image")[0].getAttribute('srcset');
-        itemImage = itemImage.replace('/', "").replace('/', "").split(" ");
-        tempItemImage = itemImage[0].split("?");
-        finalItemImage = "http://" + tempItemImage[0]
-        pageInfo += finalItemImage + " | ";
     }
+    itemImage = itemImage.replace('/', "").replace('/', "").split(" ");
+    tempItemImage = itemImage[0].split("?");
+    finalItemImage = "http://" + tempItemImage[0]
+    pageInfo += finalItemImage + " | ";
     pageInfo += "Walmart" + " | ";
     var itemPrice = "";
     itemPrice += document.getElementsByClassName("price-currency")[0].innerHTML.toString()
@@ -80,12 +87,25 @@ function walmartDataRetrieve(){
 }
 
 function targetDataRetrieve(){
-    pageInfo = ""
-    pageInfo += document.getElementsByTagName('h1')[0].innerText + " | "
+    pageInfo = "";
+    itemName = document.getElementsByTagName('h1')[0].innerText;
+    pageInfo +=  itemName.replace(/\|/g, '&') + " | ";
     pageInfo += window.location.href + " | ";
-    /*I want to personally thank Target.com for this incredibly obtuse line of code, 
-    this was the way I could acquire the primary product image in the least steps.*/
-    pageInfo += document.getElementsByClassName('ZoomedImage__Zoomed-sc-1j8d1oa-0 dmkiKr')[0].previousElementSibling.getAttribute('src') + " | ";
+    itemImage = document.getElementsByClassName("slideDeckPicture")[1]
+    itemImage2 = document.getElementsByClassName('ZoomedImage__Zoomed-sc-1j8d1oa-0 dmkiKr')[0]
+    itemImage3 = document.getElementsByClassName("slideDeckPicture")[0]
+    if (typeof(itemImage) != 'undefined' && itemImage != null){
+        /*I want to personally thank Target.com for this incredibly obtuse line of code, 
+        this was the way I could acquire the primary product image in the least steps.*/
+        finalImage = document.getElementsByClassName("slideDeckPicture")[1].firstElementChild.firstElementChild.firstElementChild.firstElementChild.getAttribute('src') + " | ";
+    }
+    else if (typeof(itemImage2) != 'undefined' && itemImage2 != null){
+        finalImage = document.getElementsByClassName('ZoomedImage__Zoomed-sc-1j8d1oa-0 dmkiKr')[0].previousElementSibling.getAttribute('src') + " | ";
+    }
+    else if (typeof(itemImage2) != 'undefined' && itemImage2 != null){
+        finalImage = document.getElementsByClassName("slideDeckPicture")[0].firstElementChild.firstElementChild.firstElementChild.firstElementChild.getAttribute('src') + " | ";
+    }
+    pageInfo += finalImage;
     pageInfo += "Target" + " | ";
     var itemPrice = "";
     var divArray = document.getElementsByTagName('div')
@@ -104,14 +124,20 @@ function ebayDataRetrieve(){
     pageInfo = ""
     itemName = document.getElementById("itemTitle").innerText
     itemName = itemName.split('\n');
-    fullName = itemName[1];
+    fullName = itemName[1].replace(/\|/g, '&');;
     pageInfo += fullName + " | ";
     pageInfo += window.location.href + " | ";
     pageInfo += document.getElementById('icImg').getAttribute('src') + " | ";
     pageInfo += "Ebay" + " | "
-    itemPrice = document.getElementById('prcIsum_bidPrice').innerText;
+    var itemPrice = document.getElementById("prcIsum");
+    if (typeof(itemPrice) != 'undefined' && itemPrice != null){
+        itemPrice = document.getElementById("prcIsum").innerText
+    }
+    else {
+        itemPrice = document.getElementById('prcIsum_bidPrice').innerText;
+    }
     itemPrice = itemPrice.split(' ');
     finalPrice = itemPrice[1];
-    pageInfo += finalPrice
+    pageInfo += finalPrice;
     return pageInfo;
 }
