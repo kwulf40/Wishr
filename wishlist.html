@@ -86,7 +86,25 @@
                 <button id="confirmButton4" value="true">Ok!</button>
               </menu>
             </form>
-        </dialog>               
+        </dialog>
+        
+        <dialog id="helpDialog">
+            <form method="dialog">
+              <p><label>Thank you for using Wishr!</label></p>
+              <p>Our currently supported websites are:</p>
+              <p>
+                  Amazon.com,
+                  Walmart.com,
+                  Target.com,
+                  Ebay.com,
+                  Etsy.com.
+              </p>
+              <p>Copyright 2021 Wishr Group</p>
+              <menu>
+                <button id="confirmButton5" value="true">Ok!</button>
+              </menu>
+            </form>
+        </dialog> 
 
         <script src="wishlist.js"></script>
 
@@ -95,13 +113,10 @@
                 <img src="star.png" id="AddToWishlist" alt="Favorites" height="50px" width="50px">
                     <script src = "updateScript.js"></script>
             </a>
-            <a href="#" class="home"> 
-                <img src="home.png" alt="Home/All" height="36px" width="36px">
+            <a href="#" class="mark"> 
+                <img src="mark.png" id="getHelp" alt="Question/Info" height="36px" width="36px">
+                    <script src="help.js"></script>
             </a>
-            <a href="#" class="trash">
-                <img src="trashcan.png" alt="Trash/Removed" height="40px" width="70px">
-            </a>
-           
         </div>
 
   </body>
