@@ -44,6 +44,7 @@ function amazonDataRetrieve(){
     var itemPrice2 = document.getElementById('priceblock_dealprice')
     var itemPrice3 = document.getElementById('priceblock_saleprice')
     var itemPrice4 = document.getElementsByClassName('a-color-price a-text-bold')[0]
+    var itemPrice5 = document.getElementsByClassName('a-size-base a-color-price a-color-price')[0]
     if (typeof(itemPrice) != 'undefined' && itemPrice != null){
         finalPrice = document.getElementById('priceblock_ourprice').innerHTML;
     }
@@ -55,6 +56,9 @@ function amazonDataRetrieve(){
     }
     else if (typeof(itemPrice4) != 'undefined' && itemPrice4 != null){
         finalPrice = document.getElementsByClassName('a-color-price a-text-bold')[0].innerHTML;
+    }
+    else if (typeof(itemPrice5) != 'undefined' && itemPrice5 != null){
+        finalPrice = document.getElementsByClassName('a-size-base a-color-price a-color-price')[0].innerHTML;
     }
     pageInfo += finalPrice;
     return pageInfo;
