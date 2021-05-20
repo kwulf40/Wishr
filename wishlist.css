@@ -1,14 +1,14 @@
 body{
     margin: 0px;
-    width: 300px;
-    height: 500px;
+    width: 450px;
+    height: 600px;
+    overflow: hidden;
 }
 .head{
     display: flex;
     margin-top: 0px;
     padding-top: 0px;
     align-items: flex-start;
-
 }
 .heading{
     background-color: #739FE1;
@@ -16,18 +16,28 @@ body{
     overflow: hidden;
     text-align: left;
    /* position: relative;*/
-    width: 250px; 
+    width: 500px; 
     margin-top: 0px;
     padding-bottom: 0px;
     padding-top: 0px;
 }
-.sign{
-    background-color: #739FE1;
-    float:right;   
-    padding-top: 7px;
-    padding-right: 7px;
-    height: 72px;
-
+.heading button[name="logout"]{
+    float:right;
+    background:#1F58AD;
+    border-radius: 20px;
+    width:20%;
+    height: 30px;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 3px;
+    padding-bottom: 7px;
+    margin-top: -70px;
+    margin-bottom: 30px;
 }
 .heading h1{
     color: white;
@@ -47,15 +57,6 @@ body{
     padding-top: 0px;
     margin-top: 0;
     padding-left: 10px;
-    /*
-    padding-top: 8px;
-    padding-bottom: 10px;*/
-
-}
-
-.sign a{
-    color: #1F58AD;
-
 }
 /* heading wishlist */
 .wishlist{
@@ -66,36 +67,18 @@ body{
     padding-left: 10px;
     margin-bottom: 0;
 }
-
 .name{
     display: flex;
     flex-direction: row;
     margin-top: 0;
     color: #00255C;
-
+    font-size: 14px;
+    font-weight: bold;
 }
-
 .items{
-    /*background-color: #EAF2FF;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    border: 2px solid red;
-    padding: 10px;
-    z-index: 10; 
-    display: flex;
-    flex-direction: row;
-    margin:0px;
-    width: 100%;
-    background-color:white;
-    float:left;
-    padding:0px;
-    border:2px solid red;
-    position: relative;
-    z-index: 10;
-    margin-top: 0px;*/
-    padding: 10px;
-    padding-right: 35px;;
+    width: 430px;
+    height: 400px;
+    padding-right: 25px;;
     background-image:
       linear-gradient(to bottom,
         rgba(234, 242, 255, 1) 0%,
@@ -104,30 +87,44 @@ body{
         rgba(255, 255, 255, 0.9) 0%,
         rgba(255, 255, 255, 0.9) 100%);
     background-clip: content-box, padding-box;
-    display: flex;
-    flex-direction: row;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
     margin:0px;
 }
-
+.WishlistTable{
+    border-spacing: 10px;
+}
+.itemImage {
+    width: 50px;
+}
+.listImage {
+    max-width:100px;
+    height:auto
+}
 .item{
-    font-size: 14px;
+    font-size: 12px;
     color: black;
-    padding-left: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
     font-weight: bold;
     margin-top: 0px;
     padding-top: 0px;
+    width: 100px;
 }
-
 .retailer{
-    padding-left: 46px;
+    padding-left: 15px;
     font-size: 11px;
+    text-align: center;
+    width: 75px;
 }
-
 .price{
     padding-left: 24px;
     font-size: 11px;
+    text-align: right;
+    width: 100%;
 }
-
 .close {
     cursor: pointer;
     position: absolute;
@@ -138,9 +135,136 @@ body{
     transform: translate(0%, -50%);
     font-size: 20px;
   }
-  
-  .close:hover {background: #bbb;}
 
+.close:hover {background: #bbb;}
+
+dialog[id="deleteDialog"]{
+    top: 15%;
+    width: 150px;  
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid #00255C;
+}
+button[id="confirmButton"]{
+    border-radius: 20px;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8em;
+    background: #1F58AD;
+    border-bottom: 1px solid #1F58AD;
+    color: white;
+    font-weight: bold;
+    margin: 0.15rem;
+    margin-left: -33px;
+    text-align: center;
+}
+button[id="cancelButton"]{
+    border-radius: 20px;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8em;
+    background: #1F58AD;
+    border-bottom: 1px solid #1F58AD;
+    color: white;
+    font-weight: bold;
+    margin: 0.15rem;
+    margin-right: 45px;
+    text-align: center;
+}
+dialog[id="delConfirmDialog"]{
+    top: 15%;
+    width: 100px;  
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid #00255C;
+}
+button[id="confirmButton2"]{
+    display: inline-block;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8em;
+    background: #1F58AD;
+    border-bottom: 1px solid #1F58AD;
+    color: white;
+    font-weight: bold;
+    margin: 0.15rem;
+    margin-left: -35px;
+    text-align: center;
+}
+dialog[id="itemAddedDialog"]{
+    top: 15%;
+    width: 150px;  
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid #00255C;
+}
+button[id="confirmButton3"]{
+    display: inline-block;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8em;
+    background: #1F58AD;
+    border-bottom: 1px solid #1F58AD;
+    color: white;
+    font-weight: bold;
+    margin: 0.15rem;
+    margin-left: -35px;
+    text-align: center;
+}
+dialog[id="failConfirmDialog"]{
+    top: 15%;
+    width: 150px;  
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid #00255C;
+}
+button[id="confirmButton4"]{
+    display: inline-block;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8em;
+    background: #1F58AD;
+    border-bottom: 1px solid #1F58AD;
+    color: white;
+    font-weight: bold;
+    margin: 0.15rem;
+    margin-left: -35px;
+    text-align: center;
+}
+dialog[id="helpDialog"]{
+    top: 15%;
+    width: 150px;  
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid #00255C;
+}
+button[id="confirmButton5"]{
+    display: inline-block;
+    border-radius: 20px;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8em;
+    background: #1F58AD;
+    border-bottom: 1px solid #1F58AD;
+    color: white;
+    font-weight: bold;
+    margin: 0.15rem;
+    margin-left: -35px;
+    text-align: center;
+}
 .footer{
     position: fixed;
     left:0;
@@ -150,44 +274,15 @@ body{
     display: flex;
     justify-content: space-evenly;
 }
-
-.home{
+.mark{
     padding-top: 7px;
     padding-left: 15px;
 }
-
 .trash{
     padding-top: 6px;
 }
-
-
 .item a{
     color: grey;
-    font-size: 3em;
-
+    font-size: 12px;
+    text-align: center;
 }
-/*  Heart button
-.heart i.fa-star{
-    color: red;
-}
-  
-.heart{
-    animation: star 0.5s linear;
-}
-@keyframes heart{
-    0%{
-        transform: rotate(0deg) scale(1.7);
-    }
-    40%{
-        transform: rotate(0deg) scale(1);
-    }
-    41%{
-        transform: rotate(360deg) scale(1);
-    }
-    100%{
-        transform: rotate(0deg) scale(1);
-    }
-}
-*/
-
-  

@@ -1,6 +1,6 @@
 {
     "name": "Wishr",
-    "version": "0.01",
+    "version": "0.17",
     "manifest_version": 2,
     "background": {
         "scripts": ["./background.js"]
@@ -11,8 +11,14 @@
     },
     "permissions": [
         "storage",
+        "tabs",
         "webRequest",
         "webRequestBlocking",
-        "https://wishr.loca.lt/"
+        "https://wishr.loca.lt/",
+        "https://*.amazon.com/",
+        "https://*.walmart.com/",
+        "https://*.target.com/",
+        "https://*.ebay.com/",
+        "https://*.etsy.com/"
     ]
 }

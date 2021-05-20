@@ -88,16 +88,6 @@ pass{
     box-sizing: border-box;
     width: calc(100% - 40px);
 }
-
-a{
-    color: #00255C;
-    text-align: right;
-    padding-left: 186px;
-    margin-right: 20px;
-    box-sizing: border-box;
-    width: calc(100% - 40px);
-
-}
 .LoginBox input[name="login"]{
     background:#1F58AD;
     border-radius: 20px;
@@ -123,20 +113,29 @@ signUpTxt{
     font-size: 18px ;
     font-weight: 500;
 }
-.SignUp input[name="signup"]{
+.SignUp button{
     background:#1F58AD;
     border-radius: 20px;
     width:90%;
     height: 30px;
     text-align: center;
-    margin-left: 5%;
-    margin-right: 5%;
     color: white;
     letter-spacing: 1px;
     font-size: 18px;
     font-weight: bold;
+    margin-left: 0px;
+    padding-left: 0px;
+    margin-left: 5%;
+    margin-right: 5%;
     padding-top: 3px;
     padding-bottom: 7px;
     margin-top: 5px;
-    margin-bottom: 80px;
+}
+other{
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-top: 3px;
+    padding-bottom: 7px;
+    margin-top: 5px;
+    /*ma: 40px;*/
 }

@@ -13,83 +13,111 @@
             <div class="heading">
                 <h1>Wishr</h1>
                 <h3>Shopping made easy.</h3>
-            </div>
-            <div class="sign">
-                <a href="./login.html" type="submit" id = "Logout" name="logout" value="logout"> Log Out</a>
+                <button id = "Logout" type="submit"  name="logout" value="logout">Log Out</Button>
+                    <script src="logoutScript.js"></script>
             </div>
         </div>
 
         <p class="wishlist">Wishlist</p>
 
-        <div class="name">
-            <h4 style="padding-left: 10px;">Item</h4>
-            <h4 style="padding-left: 125px;">Retailer</h4>
-            <h4 style="padding-left: 20px;">Price</h4>
-        </div>
-
-
         <div class="items" id="items">
-            <div class="item"> <!-- Make this Item title go to URL, connect to XML-->
-                <p>Item Title</p>
-                <img src="wish.png" alt="Item Picture" height="70px" width="100px">
-                <!--   HEART BUTTON  ***was not working
-                <a href ="#" class="fav">
-                    <i class="fa fa-heart" aria-hidden="true"></i>
-
-                </a>
-                <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-                <script>
-                    $(document).ready(function(){
-                        $(".fav").click(function(){
-                            $(this).toggleClass("heart");
-                        });
-                    });
-                </script> -->
-            </div>
-
-            <div class="retailer">
-                <p>Walmart</p>
-                <p>Amazon</p>
-                <p>Target</p>
-            </div>
-            <div class="prices">
-                <p>00.00</p>
-            </div>
-            <div class="button">
-                <span class="close">&times;</span>
-            </div>
+            <table class="WishlistTable">
+                <tbody>
+                    <tr>
+                        <th style="padding-left: 5px">Image</th>
+                        <th style="padding-left: 40px; padding-right: 40px;">Item</th>
+                        <th style="padding-left: 15px; text-align:center;">Retailer</th>
+                        <th style="padding-left: 20px; text-align:right;">Price</th>
+                        <th style="padding-left: 20px;"></th>
+                    </tr>
+                    <tr>
+                        <td class="itemImage">
+                            <img src="wish.png" alt="Item Picture" height="70px" width="100px"></img>
+                        </td>
+                        <td class="item"> 
+                            <p>Use the Star down below to add items to your list!</p>
+                        </td>
+                        <td class="retailer">
+                            <p>Amazon</p>
+                        </td>
+                        <td class="price">
+                            <p>$00.00</p>
+                        </td>
+                        <td>
+                            <button class="deleteButton">&times;</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
+        <dialog id="deleteDialog">
+            <form method="dialog">
+              <p><label>Delete From Wishlist?</label></p>
+              <menu>
+                <button id="confirmButton" value="true">Confirm</button>
+                <button id="cancelButton" value="false">Cancel</button>
+              </menu>
+            </form>
+        </dialog>
+
+        <dialog id="delConfirmDialog">
+            <form method="dialog">
+              <p><label>Item Deleted!</label></p>
+              <menu>
+                <button id="confirmButton2" value="true">Ok!</button>
+              </menu>
+            </form>
+        </dialog>
+
+        <dialog id="itemAddedDialog">
+            <form method="dialog">
+              <p><label>Item Added to Wishlist!</label></p>
+              <menu>
+                <button id="confirmButton3" value="true">Ok!</button>
+              </menu>
+            </form>
+        </dialog>
+
+        <dialog id="failConfirmDialog">
+            <form method="dialog">
+              <p><label>Failed to add item to wishlist. Please send this url to the devs!</label></p>
+              <menu>
+                <button id="confirmButton4" value="true">Ok!</button>
+              </menu>
+            </form>
+        </dialog>
+        
+        <dialog id="helpDialog">
+            <form method="dialog">
+              <p><label>Thank you for using Wishr!</label></p>
+              <p>Our currently supported websites are:</p>
+              <p>
+                  Amazon.com,
+                  Walmart.com,
+                  Target.com,
+                  Ebay.com,
+                  Etsy.com.
+              </p>
+              <p>Copyright 2021 Wishr Group</p>
+              <menu>
+                <button id="confirmButton5" value="true">Ok!</button>
+              </menu>
+            </form>
+        </dialog> 
 
         <script src="wishlist.js"></script>
 
         <div class="footer">
             <a href="#">
-                <img src="star.png" alt="Favorites" height="50px" width="50px">
+                <img src="star.png" id="AddToWishlist" alt="Favorites" height="50px" width="50px">
+                    <script src = "updateScript.js"></script>
             </a>
-            <a href="#" class="home"> 
-                <img src="home.png" alt="Home/All" height="36px" width="36px">
+            <a href="#" class="mark"> 
+                <img src="mark.png" id="getHelp" alt="Question/Info" height="36px" width="36px">
+                    <script src="help.js"></script>
             </a>
-            <a href="#" class="trash">
-                <img src="trashcan.png" alt="Trash/Removed" height="40px" width="70px">
-            </a>
-           
         </div>
-
-    <!-- <script src="placeholder.js"> 
-
-/* should close class items when x is clicked,  NOT WORKING
-https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_close_list_items */
-
-var closebtns = document.getElementsByClassName("items");
-var i;
-
-for (i = 0; i < closebtns.length; i++) {
-  closebtns[i].addEventListener("click", function() {
-    this.parentElement.style.display = 'none';
-  });
-}
-
-    </script>--> 
 
   </body>
 </html>
