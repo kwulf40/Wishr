@@ -2,12 +2,14 @@
     "name": "Wishr",
     "version": "0.17",
     "manifest_version": 2,
+    "description": "A platform agnostic wishlist extension!",
     "background": {
         "scripts": ["./background.js"]
     },
     "browser_action": {
         "default_popup": "login.html",
-        "default_title": "Wishr"
+        "default_title": "Wishr",
+        "default_icon": "images/wishIcon-16x16.png"
     },
     "permissions": [
         "storage",

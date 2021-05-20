@@ -18,7 +18,15 @@ document.querySelector('form').addEventListener('submit', event => {
     }
     if (username && password && errorCheck != 1){
         chrome.runtime.sendMessage({message: 'createAccount', payload: {username, password}}, function (response){
-            if (response === 'success') console.log('New Account Created');
+            if (response === 'success'){
+                chrome.storage.local.set({username: username}, function(response){
+                    if (chrome.runtime.lastError) {console.log('Name Data Storage Failure');}
+                    else{
+                        console.log('New Account Created');
+                        window.location.href = "wishlist.html";
+                    }
+                });
+            }
             else {
                 console.log("Account Creation failed");
             }
