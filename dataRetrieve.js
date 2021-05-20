@@ -61,11 +61,11 @@ function amazonDataRetrieve(){
     else if (typeof(itemPrice3) != 'undefined' && itemPrice3 != null){
         finalPrice = document.getElementById('priceblock_saleprice').innerHTML;
     }
-    else if (typeof(itemPrice4) != 'undefined' && itemPrice4 != null){
-        finalPrice = document.getElementsByClassName('a-color-price a-text-bold')[0].innerHTML;
-    }
     else if (typeof(itemPrice5) != 'undefined' && itemPrice5 != null){
         finalPrice = document.getElementsByClassName('a-size-base a-color-price a-color-price')[0].innerHTML;
+    }
+    else if (typeof(itemPrice4) != 'undefined' && itemPrice4 != null){
+        finalPrice = document.getElementsByClassName('a-color-price a-text-bold')[0].innerHTML;
     }
     pageInfo += finalPrice;
     return pageInfo;
