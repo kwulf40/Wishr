@@ -9,10 +9,14 @@
  */
 document.querySelector('form').addEventListener('submit', event => {
     event.preventDefault();
-
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    if (username && password){
+    errorCheck = 0
+    username = document.getElementById("username").value;
+    password = document.getElementById("password").value;
+    if (username.indexOf("\'") > -1) {
+        errorCheck = 1
+        console.log("Illegal Char in username");
+    }
+    if (username && password && errorCheck != 1){
         chrome.runtime.sendMessage({message: 'createAccount', payload: {username, password}}, function (response){
             if (response === 'success') console.log('New Account Created');
             else {

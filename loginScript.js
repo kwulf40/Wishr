@@ -17,10 +17,15 @@ chrome.runtime.sendMessage({message: 'userStatus'}, function (response){
 
 document.querySelector('form').addEventListener('submit', event => {
     event.preventDefault();
+    errorCheck = 0
+    username = document.getElementById("username").value;
+    password = document.getElementById("password").value;
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    if (username && password){
+    if (username.indexOf("\'") > -1) {
+        errorCheck = 1
+        console.log("Illegal Char in username");
+    }
+    if (username && password && errorCheck != 1){
         chrome.runtime.sendMessage({message: 'login', payload: {username, password}}, function (response){
             if (response === 'success'){
                 console.log('Login Successful');
