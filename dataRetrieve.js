@@ -101,13 +101,13 @@ function targetDataRetrieve(){
     itemImage = document.getElementsByClassName("slideDeckPicture")[1]
     itemImage2 = document.getElementsByClassName('ZoomedImage__Zoomed-sc-1j8d1oa-0 dmkiKr')[0]
     itemImage3 = document.getElementsByClassName("slideDeckPicture")[0]
-    if (typeof(itemImage) != 'undefined' && itemImage != null){
+    if (typeof(itemImage2) != 'undefined' && itemImage2 != null){
+        finalImage = document.getElementsByClassName('ZoomedImage__Zoomed-sc-1j8d1oa-0 dmkiKr')[0].previousElementSibling.getAttribute('src') + " | ";
+    }
+    else if (typeof(itemImage) != 'undefined' && itemImage != null && itemImage2         ){
         /*I want to personally thank Target.com for this incredibly obtuse line of code, 
         this was the way I could acquire the primary product image in the least steps.*/
         finalImage = document.getElementsByClassName("slideDeckPicture")[1].firstElementChild.firstElementChild.firstElementChild.firstElementChild.getAttribute('src') + " | ";
-    }
-    else if (typeof(itemImage2) != 'undefined' && itemImage2 != null){
-        finalImage = document.getElementsByClassName('ZoomedImage__Zoomed-sc-1j8d1oa-0 dmkiKr')[0].previousElementSibling.getAttribute('src') + " | ";
     }
     else if (typeof(itemImage3) != 'undefined' && itemImage3 != null){
         finalImage = document.getElementsByClassName("slideDeckPicture")[0].firstElementChild.firstElementChild.firstElementChild.firstElementChild.getAttribute('src') + " | ";

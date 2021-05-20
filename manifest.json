@@ -1,6 +1,6 @@
 {
     "name": "Wishr",
-    "version": "0.20",
+    "version": "1.0",
     "manifest_version": 2,
     "description": "A platform agnostic wishlist extension!",
     "background": {
