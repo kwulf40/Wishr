@@ -35,11 +35,15 @@ function amazonDataRetrieve(){
     pageInfo += window.location.href + " | ";
     itemImage = document.getElementById('landingImage');
     itemImage2 = document.getElementById('gc-standard-design-image')
+    itemImage3 = document.getElementById('imgBlkFront')
     if (typeof(itemImage) != 'undefined' && itemImage != null){
         finalImage = document.getElementById('landingImage').getAttribute("src") + " | ";
     }
     else if (typeof(itemImage2) != 'undefined' && itemImage2 != null){
         finalImage = document.getElementById('gc-standard-design-image').getAttribute("src") + " | ";
+    }
+    else if (typeof(itemImage3) != 'undefined' && itemImage3 != null){
+        finalImage = document.getElementById('imgBlkFront').getAttribute('src') + " | "
     }
     pageInfo += finalImage;
     pageInfo += "Amazon" + " | ";
