@@ -28,16 +28,18 @@ function modifyUserStatus(statusBool, userInfo){
         .then(response => {
             return new Promise (resolve => {
                 if (response.status !== 200) resolve ('Response Status Failure');
-                user = userInfo.username
-                chrome.storage.local.set({userStatus: statusBool}, function(response){
-                    if (chrome.runtime.lastError) resolve('Data Storage Failure');
+                if (response.status === 200){
+                    user = userInfo.username
+                    chrome.storage.local.set({userStatus: statusBool}, function(response){
+                        if (chrome.runtime.lastError) resolve('Data Storage Failure');
 
-                    signedIn = statusBool;
-                });
-                chrome.storage.local.set({username: user}, function(response){
-                    if (chrome.runtime.lastError) resolve('Name Data Storage Failure');
-                });
-                resolve('success');
+                        signedIn = statusBool;
+                    });
+                    chrome.storage.local.set({username: user}, function(response){
+                        if (chrome.runtime.lastError) resolve('Name Data Storage Failure');
+                    });
+                    resolve('success');
+                }
             })
         })
         .catch(error => console.log(error))
