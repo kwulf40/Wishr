@@ -1,5 +1,5 @@
 # Wishr
- Wish-list Extension for Google Chrome
+ Wish-list Extension for Google Chrome - OUTDATED DUE TO MANIFEST V3 ON CHROME
 
 **INSTRUCTIONS**
 *Requires Google Chrome*
